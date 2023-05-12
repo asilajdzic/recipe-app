@@ -52,7 +52,6 @@ const SignUpForm = () => {
 					className='input-field'
 					name='username'
 					type='text'
-					id='username'
 					value={username}
 				></input>
 				<label htmlFor='password'>Password: </label>
@@ -61,7 +60,6 @@ const SignUpForm = () => {
 					className='input-field'
 					name='password'
 					type='password'
-					id='password'
 					value={password}
 				></input>
 				<label htmlFor='confirmPassword'>Confirm Password: </label>
@@ -70,7 +68,6 @@ const SignUpForm = () => {
 					className='input-field'
 					name='confirmPassword'
 					type='password'
-					id='confirmPassword'
 					value={confirmPassword}
 				></input>
 				<button className='form-submit-btn'>Sign Up</button>
