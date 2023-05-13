@@ -16,7 +16,11 @@ app.use(cors());
 app.use('/auth', userRouter);
 app.use('/recipes', recipesRouter);
 
-const options = { writeConcern: { w: 'majority', wtimeout: 1000 } };
+const options = {
+	writeConcern: { w: 'majority', wtimeout: 1000 },
+	useUnifiedTopology: true,
+	useNewUrlParser: true,
+};
 mongoose
 	.connect(process.env.MONGO_URL, options)
 	.then(() => {

@@ -46,7 +46,7 @@ const SignUpForm = () => {
 		<div className='sign-up-form-container'>
 			<form onSubmit={onSubmitForm} className='form-container'>
 				<h2>Sign Up</h2>
-				<label htmlFor='username'>Username: </label>
+				<label>Username: </label>
 				<input
 					onChange={onChangeInput}
 					className='input-field'
@@ -54,7 +54,7 @@ const SignUpForm = () => {
 					type='text'
 					value={username}
 				></input>
-				<label htmlFor='password'>Password: </label>
+				<label>Password: </label>
 				<input
 					onChange={onChangeInput}
 					className='input-field'
@@ -62,7 +62,7 @@ const SignUpForm = () => {
 					type='password'
 					value={password}
 				></input>
-				<label htmlFor='confirmPassword'>Confirm Password: </label>
+				<label>Confirm Password: </label>
 				<input
 					onChange={onChangeInput}
 					className='input-field'
