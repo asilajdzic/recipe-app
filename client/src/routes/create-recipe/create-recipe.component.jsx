@@ -67,6 +67,7 @@ const CreateRecipe = () => {
 				<input
 					className='input-field'
 					name='name'
+					type='text'
 					value={name}
 					onChange={onChangeInput}
 				></input>
@@ -84,14 +85,14 @@ const CreateRecipe = () => {
 				<button
 					type='button'
 					onClick={handleAddIngredient}
-					className='input-field'
+					className='input-field add-ingredient-btn'
 				>
 					Add Ingredient
 				</button>
 
 				<label>Instructions: </label>
 				<textarea
-					className='input-field text-input-field'
+					className='text-input-field'
 					name='instructions'
 					value={instructions}
 					onChange={onChangeInput}
@@ -100,13 +101,16 @@ const CreateRecipe = () => {
 				<input
 					className='input-field'
 					name='imageUrl'
+					type='text'
 					value={imageUrl}
 					onChange={onChangeInput}
 				></input>
 				<label>Cooking Time: </label>
 				<input
-					className='input-field'
+					className='input-field cooking-time'
+					type='number'
 					name='cookingTime'
+					min={0}
 					value={cookingTime}
 					onChange={onChangeInput}
 				></input>

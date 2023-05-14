@@ -19,14 +19,32 @@
 				outline: none;
 			}
 		}
+		.add-ingredient-btn {
+			height: 28px;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+		.text-input-field {
+			resize: none;
+			min-height: 24px;
+			margin: 10px 0;
+			height: fit-content;
+			&:focus {
+				outline: none;
+			}
+		}
 		.form-submit-btn {
-			width: 80px;
+			width: 120px;
 			height: 40px;
 			align-self: flex-end;
 			margin: 10px 0;
 			&:hover {
 				cursor: pointer;
 			}
+		}
+		.cooking-time {
+			text-align: center;
 		}
 	}
 }
