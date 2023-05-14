@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
 import { useGetUserID } from '../../hooks/useGetUserID';
 import axios from 'axios';
 
@@ -11,6 +11,35 @@ const Home = () => {
 	const [savedRecipes, setSavedRecipes] = useState([]);
 	const userID = useGetUserID();
 
+	const isRecipeSaved = (recipeID) => {
+		if (!userID || typeof userID !== 'string') {
+			return false;
+		}
+		return savedRecipes && savedRecipes.includes(recipeID);
+	};
+
+	const removeSavedRecipe = async (recipeID) => {
+		try {
+			const response = await axios.delete(
+				`http://localhost:3001/recipes/savedRecipes/${userID}/${recipeID}`
+			);
+			setSavedRecipes(response.data.savedRecipes);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	const saveRecipe = async (recipeID) => {
+		try {
+			const response = await axios.put('http://localhost:3001/recipes', {
+				recipeID: recipeID,
+				userID,
+			});
+			setSavedRecipes(response.data.savedRecipes);
+		} catch (err) {
+			console.log(err);
+		}
+	};
 	useEffect(() => {
 		const fetchRecipes = async () => {
 			try {
@@ -31,7 +60,7 @@ const Home = () => {
 			}
 		};
 		fetchRecipes();
-		fetchSavedRecipes();
+		if (userID) fetchSavedRecipes();
 		// eslint-disable-next-line
 	}, []);
 
@@ -39,12 +68,29 @@ const Home = () => {
 		<div className='home-container'>
 			<h2>Recipes</h2>
 			{recipes.map((recipe) => (
-				<RecipePreview
-					key={recipe._id}
-					recipe={recipe}
-					savedRecipes={savedRecipes}
-					setSavedRecipes={setSavedRecipes}
-				/>
+				<Fragment key={recipe._id}>
+					<div className='bookmark-recipe-container'>
+						{isRecipeSaved(recipe._id) ? (
+							<h1
+								onClick={() => removeSavedRecipe(recipe._id)}
+								className='bookmark-icon'
+								title='Remove from saved recipes'
+							>
+								&#9733;
+							</h1>
+						) : (
+							<h1
+								onClick={() => saveRecipe(recipe._id)}
+								className='bookmark-icon'
+								title='Add to saved recipes'
+							>
+								&#9734;
+							</h1>
+						)}
+					</div>
+
+					<RecipePreview recipe={recipe} />
+				</Fragment>
 			))}
 		</div>
 	);

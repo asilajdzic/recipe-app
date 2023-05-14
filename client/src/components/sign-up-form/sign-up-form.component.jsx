@@ -1,5 +1,6 @@
 import { useState } from 'react';
-
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 import './sign-up-form.styles.scss';
@@ -13,6 +14,9 @@ const defaultFormFields = {
 const SignUpForm = () => {
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const { username, password, confirmPassword } = formFields;
+	const navigate = useNavigate();
+	// eslint-disable-next-line
+	const [cookies, setCookies] = useCookies(['access_token']);
 
 	const resetFormFields = () => {
 		setFormFields(defaultFormFields);
@@ -30,6 +34,20 @@ const SignUpForm = () => {
 				username,
 				password,
 			});
+			try {
+				const response = await axios.post(
+					'http://localhost:3001/auth/sign-in',
+					{
+						username,
+						password,
+					}
+				);
+				setCookies('access_token', response.data.token);
+				window.localStorage.setItem('userID', response.data.userID);
+				navigate('/');
+			} catch (error) {
+				console.log(error);
+			}
 		} catch (error) {
 			console.log(error);
 		}

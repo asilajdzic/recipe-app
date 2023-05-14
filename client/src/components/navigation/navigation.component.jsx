@@ -11,7 +11,7 @@ const Navigation = () => {
 	const signOut = () => {
 		setCookies('access_token', '');
 		window.localStorage.removeItem('userID');
-		navigate('/');
+		navigate('/auth');
 	};
 
 	return (

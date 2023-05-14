@@ -99,4 +99,20 @@ router.get('/savedRecipes/:userId', async (req, res) => {
 	}
 });
 
+router.delete('/savedRecipes/:userId/:recipeId', async (req, res) => {
+	try {
+		const user = await UserModel.findById(req.params.userId);
+		const index = user.savedRecipes.indexOf(req.params.recipeId);
+		if (index === -1) {
+			return res.status(404).json({ message: 'Recipe not found' });
+		}
+		user.savedRecipes.splice(index, 1);
+		await user.save();
+		res.status(200).json({ savedRecipes: user.savedRecipes });
+	} catch (err) {
+		console.log(err);
+		res.status(500).json(err);
+	}
+});
+
 export { router as recipesRouter };

@@ -18,10 +18,6 @@ const SignInForm = () => {
 
 	const navigate = useNavigate();
 
-	const resetFormFields = () => {
-		setFormFields(defaultFormFields);
-	};
-
 	const onSubmitForm = async (e) => {
 		e.preventDefault();
 		try {
@@ -35,7 +31,6 @@ const SignInForm = () => {
 		} catch (error) {
 			console.log(error);
 		}
-		resetFormFields();
 	};
 	const onChangeInput = (e) => {
 		const { name, value } = e.target;
