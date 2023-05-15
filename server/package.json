@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "nodemon src/index.js",
+    "build": "npm i"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",

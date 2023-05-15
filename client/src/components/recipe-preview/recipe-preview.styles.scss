@@ -5,6 +5,9 @@
 	flex-direction: column;
 	align-items: center;
 	border: 1px solid;
+	&:hover {
+		cursor: pointer;
+	}
 	.recipe-preview-header {
 		display: flex;
 		align-items: center;
@@ -18,6 +21,23 @@
 		img {
 			width: 100%;
 			margin: 20px 0;
+		}
+	}
+	.ingredients-container {
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		width: 30%;
+		align-self: center;
+		margin: 10px 0;
+		h3 {
+			margin-bottom: 10px;
+		}
+		.list-item {
+			padding: 0;
+			margin: 0;
+			list-style-type: '-';
+			list-style-position: inside;
 		}
 	}
 }
